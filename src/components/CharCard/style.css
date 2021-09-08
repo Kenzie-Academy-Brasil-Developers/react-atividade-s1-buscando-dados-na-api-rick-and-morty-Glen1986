@@ -1,0 +1,17 @@
+.card{
+  height:250px;
+  width:180px;
+  padding: 10px;
+  font-weight:bold;
+  border: 1px solid red;
+  background:#ccc;
+  color: black;
+  flex-direction: row;
+  display: flex;
+  flex-direction:column;
+}
+.picture{
+  height:100%;
+  width:100%;
+  object-fit: cover;
+}
