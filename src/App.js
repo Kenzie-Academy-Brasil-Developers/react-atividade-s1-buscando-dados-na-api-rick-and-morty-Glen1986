@@ -1,39 +1,28 @@
 import './App.css';
-//import CharCard from './components/CharCard'
-import Characters from './components/Characters'
-import { Component } from 'react';
+import {  useState, useEffect } from 'react';
+import Characters from './components/Characters';
+
+function App() {
+const [characters, setCharacters] = useState([]);
+//const [person, setPerson] = useState({})
 
 
-class App extends Component {
-
-  state = {
-    characters:[], 
-
-  }
-  componentDidMount(){
+  useEffect(()=>{
     fetch('https://rickandmortyapi.com/api/character')
-      .then(response =>{return response.json() })
+    .then((response) => response.json())
+    .then((response) => setCharacters( [{response}]))
+    .catch((error) => console.log("Erro na requisição"))
+  }, []);
+  console.log(characters)
 
-      .then(response => this.setState({characters: response.results}))
-      .catch(error => console.log("error"))
-      }
-  state = {
-    characters: [],
-  } 
-  render(){
-
-    const { characters } = this.state;
-    
-  return (
-    <div className="App">
-      <div className="App-header">
-        <Characters
-          characters = { characters }
-        />
-      </div>
+    return (
+      <div className="App">
+      <header className="App-header">
+        <Characters characters={characters} />
+      </header>
     </div>
   );
-}
+ 
 }
 
 export default App;

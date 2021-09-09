@@ -1,5 +1,5 @@
 import './style.css'
-const CharCard = ({ char: {name, image}}) =>{
+const CharCard = ({ char: { id, name, image}}) =>{
 
   return(
     <div className ="card">
