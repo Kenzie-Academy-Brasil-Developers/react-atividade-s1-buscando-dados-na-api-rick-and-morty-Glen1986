@@ -10,7 +10,7 @@ const [characters, setCharacters] = useState([]);
   useEffect(()=>{
     fetch('https://rickandmortyapi.com/api/character')
     .then((response) => response.json())
-    .then((response) => setCharacters( [{response}]))
+    .then((response) => setCharacters( [...response.results]))
     .catch((error) => console.log("Erro na requisição"))
   }, []);
   console.log(characters)
