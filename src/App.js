@@ -1,29 +1,19 @@
 import './App.css';
-import { Component } from 'react';
+import {  useState, useEffect } from 'react';
 import Characters from './components/Characters';
 
-class App extends Component {
+function App() {
+const [characters, setCharacters] = useState([]);
+//const [person, setPerson] = useState({})
 
-  state = {
-    characters: [],
-    person: {
 
-    }
-  }
-
-  componentDidMount(){
+  useEffect(()=>{
     fetch('https://rickandmortyapi.com/api/character')
-    .then(response => {
-      return response.json()
-    })
-    .then( response => this.setState({ characters: response.results}))
-    .catch( error => console.log("Erro na requisição"))
-  }
-
-
-  render(){
-
-    const { characters } = this.state;
+    .then((response) => response.json())
+    .then((response) => setCharacters( [{response}]))
+    .catch((error) => console.log("Erro na requisição"))
+  }, []);
+  console.log(characters)
 
     return (
       <div className="App">
@@ -32,7 +22,7 @@ class App extends Component {
       </header>
     </div>
   );
- }
+ 
 }
 
 export default App;
