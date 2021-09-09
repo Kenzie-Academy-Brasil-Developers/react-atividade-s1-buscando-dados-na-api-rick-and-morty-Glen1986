@@ -12,7 +12,7 @@ class App extends Component {
   }
 
   componentDidMount(){
-    fetch('https://rickandmortyapi.com/api/character/?page=2')
+    fetch('https://rickandmortyapi.com/api/character')
     .then(response => {
       return response.json()
     })
@@ -32,7 +32,7 @@ class App extends Component {
       </header>
     </div>
   );
-}
+ }
 }
 
 export default App;
