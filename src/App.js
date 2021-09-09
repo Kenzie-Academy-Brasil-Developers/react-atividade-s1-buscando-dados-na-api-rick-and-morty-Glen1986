@@ -1,36 +1,35 @@
 import './App.css';
-//import CharCard from './components/CharCard'
-import Characters from './components/Characters'
 import { Component } from 'react';
-
+import Characters from './components/Characters';
 
 class App extends Component {
 
   state = {
-    characters:[], 
-
-  }
-  componentDidMount(){
-    fetch('https://rickandmortyapi.com/api/character')
-      .then(response =>{return response.json() })
-
-      .then(response => this.setState({characters: response.results}))
-      .catch(error => console.log("error"))
-      }
-  state = {
     characters: [],
-  } 
+    person: {
+
+    }
+  }
+
+  componentDidMount(){
+    fetch('https://rickandmortyapi.com/api/character/?page=2')
+    .then(response => {
+      return response.json()
+    })
+    .then( response => this.setState({ characters: response.results}))
+    .catch( error => console.log("Erro na requisição"))
+  }
+
+
   render(){
 
     const { characters } = this.state;
-    
-  return (
-    <div className="App">
-      <div className="App-header">
-        <Characters
-          characters = { characters }
-        />
-      </div>
+
+    return (
+      <div className="App">
+      <header className="App-header">
+        <Characters characters={characters} />
+      </header>
     </div>
   );
 }
